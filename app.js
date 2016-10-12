@@ -23,7 +23,7 @@ app.use(express.static(__dirname + '/static'));
 // Note: important that this is added just before your own Routes
 // app.use(mbaasExpress.fhmiddleware());
 
-app.use('/hello', require('./lib/hello.js')(expressWs));
+app.use('/hello', require('./lib/hello.js')(expressWs.getWss('/ws')));
 
 app.ws('/ws', function(ws, req) {
 });
