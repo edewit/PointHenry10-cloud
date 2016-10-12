@@ -1,7 +1,7 @@
 var WebSocketClient = require('websocket').client;
 var client = new WebSocketClient();
 client.connect('ws://localhost:8001/ws');
-//var client = new WebSocket('wss://pointingpoker-edewit.rhcloud.com:8443/ws');
+//client.connect('wss://pointingpoker-edewit.rhcloud.com:8443/ws');
 
 client.on('connectFailed', function (error) {
     console.log('Connect Error: ' + error.toString());

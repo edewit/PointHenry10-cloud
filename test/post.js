@@ -1,24 +1,23 @@
-var http = require('http');
+var request = require('request');
 
-var body = JSON.stringify(
+request.post(
+    "http://localhost:8001/hello",
+    //"https://pointingpoker-edewit.rhcloud.com/hello",
     {
-        session: {
-            Name: "socket test session",
-            CreatedBy: {
-                Name: "Erik Jan"
+        json: {
+            session: {
+                Name: "socket test session",
+                CreatedBy: {
+                    Name: "Erik Jan"
+                }
             }
         }
-    });
-
-var request = new http.ClientRequest({
-    hostname: "localhost",
-    port: 8001,
-    path: "/hello",
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json",
-        "Content-Length": Buffer.byteLength(body)
+    },
+    function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            console.log(body)
+        } else {
+            console.log("error", error);
+        }
     }
-})
-
-request.end(body)
+);
