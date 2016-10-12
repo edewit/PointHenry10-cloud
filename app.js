@@ -25,10 +25,7 @@ app.use(express.static(__dirname + '/static'));
 
 app.use('/hello', require('./lib/hello.js')());
 
-app.ws('/echo', function(ws, req) {
-  ws.on('message', function(msg) {
-    ws.send('back to you ' + msg);
-  });
+app.ws('/ws', function(ws, req) {
 });
 
 // Important that this is last!
