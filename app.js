@@ -24,8 +24,9 @@ app.use(express.static(__dirname + '/static'));
 // app.use(mbaasExpress.fhmiddleware());
 
 app.ws('/ws', function(ws, req) {
-  app.use('/hello', require('./lib/hello.js')(ws));
 });
+
+app.use('/hello', require('./lib/hello.js')(expressWs.getWss('/ws')));
 
 // Important that this is last!
 // app.use(mbaasExpress.errorHandler());
