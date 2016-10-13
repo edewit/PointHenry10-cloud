@@ -6,11 +6,9 @@ request.post(
     // "https://pointingpoker-edewit.rhcloud.com/hello",
     {
         json: {
-            session: {
-                Name: "socket test session",
-                CreatedBy: {
-                    Name: "Erik Jan"
-                }
+            Name: "socket test session",
+            CreatedBy: {
+                Name: "Erik Jan"
             }
         }
     },
