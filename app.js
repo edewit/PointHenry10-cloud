@@ -8,7 +8,9 @@ var cors = require('cors');
 // securableEndpoints = ['/hello'];
 
 var app = express();
-var expressWs = require('express-ws')(app);
+
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
 // Enable CORS for all requests
 app.use(cors());
@@ -23,16 +25,20 @@ app.use(express.static(__dirname + '/static'));
 // Note: important that this is added just before your own Routes
 // app.use(mbaasExpress.fhmiddleware());
 
-app.ws('/ws', function(ws, req) {
+io.on('connection', function(socket){
+  socket.on('chat message', function(msg){
+    console.log('message: ' + msg);
+  });
 });
 
-app.use('/hello', require('./lib/hello.js')(expressWs.getWss()));
+app.use('/hello', require('./lib/hello.js')(io));
 
 // Important that this is last!
 // app.use(mbaasExpress.errorHandler());
 
 var port = process.env.FH_PORT || process.env.OPENSHIFT_NODEJS_PORT || 8001;
 var host = process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
-app.listen(port, host, function() {
+
+http.listen(port, host, function(){
   console.log("App started at: " + new Date() + " on port: " + port);
 });
