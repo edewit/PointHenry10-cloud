@@ -1,8 +1,9 @@
 var request = require('request');
 
 request.post(
-    "http://localhost:8001/hello",
-    //"https://pointingpoker-edewit.rhcloud.com/hello",
+    "https://cloudappdefa7pmf.osm3.feedhenry.net/hello",
+    // "http://localhost:8001/hello",
+    // "https://pointingpoker-edewit.rhcloud.com/hello",
     {
         json: {
             session: {

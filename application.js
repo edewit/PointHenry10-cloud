@@ -31,7 +31,7 @@ io.on('connection', function(socket){
   });
 });
 
-app.use('/hello', require('./lib/hello.js')(io));
+app.use('/poker', require('./lib/poker.js')(io));
 
 // Important that this is last!
 app.use(mbaasExpress.errorHandler());
