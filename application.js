@@ -5,7 +5,7 @@ var cors = require('cors');
 
 // list the endpoints which you want to make securable here
 var securableEndpoints;
-securableEndpoints = ['/hello'];
+securableEndpoints = ['/poker'];
 
 var app = express();
 
