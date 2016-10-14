@@ -36,39 +36,53 @@
 			padding: 10px;
 		}
 
-		#messages {
+		.list {
 			list-style-type: none;
 			margin: 0;
 			padding: 0;
 		}
 
-		#messages li {
+		.list li {
 			padding: 5px 10px;
 		}
 
-		#messages li:nth-child(odd) {
+		.list li:nth-child(odd) {
 			background: #eee;
 		}
 	</style>
 </head>
 
 <body>
-	<ul id="messages"></ul>
-	<form action="">
-		<input id="m" autocomplete="off" /><button>Send</button>
-	</form>
+	<ul id="sessions" class="list"></ul>
+	<p style="margin: 20px">Current Users</p>
+	<ul id="users" class="list"></ul>
 	<script src="/socket.io.js"></script>
 	<script src="/jquery-1.11.1.js"></script>
 	<script>
-  var socket = io();
-  $('form').submit(function(){
-    socket.emit('chat message', $('#m').val());
-    $('#m').val('');
-    return false;
-  });
-  socket.on('chat message', function(msg){
-    $('#messages').append($('<li>').text(msg));
-  });
+	var socket = io();
+
+	$.get("/poker", function(data) {
+		$(data).each(function(index, value) {
+			$("#sessions").append($('<li>').text(value.Name));
+		});
+		$("#sessions li").click(function() {
+      $('b').contents().unwrap();
+			var element = $( this );
+			element.wrapInner('<b>');
+			socket.emit('room-join', element.text());
+		});
+	});
+
+	socket.on('sessionUpdated', function(msg) {
+		console.log('update received', msg);
+		$('#users').append($('<li>').text(JSON.parse(msg).Name));
+	});
+
+	socket.on('sessions', function(msg) {
+		console.log('update received', msg);
+		$('#sessions').append($('<li>').text(JSON.parse(msg).Name));
+	});
+
 </script>
 </body>
 
