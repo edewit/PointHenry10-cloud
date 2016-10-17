@@ -25,12 +25,6 @@ app.use(express.static(__dirname + '/static'));
 // Note: important that this is added just before your own Routes
 app.use(mbaasExpress.fhmiddleware());
 
-io.on('connection', function(socket){
-  socket.on('chat message', function(msg){
-    console.log('message: ' + msg);
-  });
-});
-
 app.use('/poker', require('./lib/poker.js')(io));
 
 // Important that this is last!

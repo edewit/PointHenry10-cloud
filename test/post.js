@@ -1,16 +1,14 @@
 var request = require('request');
 
 request.post(
-    "https://cloudappdefa7pmf.osm3.feedhenry.net/hello",
-    // "http://localhost:8001/hello",
-    // "https://pointingpoker-edewit.rhcloud.com/hello",
+    //"https://cloudappdefa7pmf.osm3.feedhenry.net/poker",
+    "http://localhost:8001/poker",
+    // "https://pointingpoker-edewit.rhcloud.com/poker",
     {
         json: {
-            session: {
-                Name: "socket test session",
-                CreatedBy: {
-                    Name: "Erik Jan"
-                }
+            Name: "socket test session",
+            CreatedBy: {
+                Name: "Erik Jan"
             }
         }
     },
