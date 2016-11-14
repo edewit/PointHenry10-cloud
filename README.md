@@ -1,6 +1,8 @@
 Pointing Poker Server
 =====================
 
+> WARNING: This repo has been moved to https://github.com/RHMAP-Sample-Mobile-Apps/pointing-cloud
+
 Start the server with:
 
 ```bash
